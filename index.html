@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEETBAKU — By Mehdi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- QARŞILAMA SƏHİFƏSİ (LANDING) -->
+    <div id="landingPage" class="landing-container">
+        
+        <!-- Sol üstdə Dil Seçimi -->
+        <div class="top-left-lang-landing">
+            <button class="lang-switch-btn" onclick="toggleLanguage()" id="langBtnLanding">AZ 🌐</button>
+        </div>
+
+        <div class="landing-nav">
+            <div style="width: 1px;"></div>
+            <ul class="landing-menu">
+                <li><a href="#" class="active" onclick="startApp()" data-i18n="land_home">Home</a></li>
+                <li><a href="#" onclick="openMenuFromLanding('about')" data-i18n="land_about">Haqqımızda</a></li>
+                <li><a href="#" onclick="openMenuFromLanding('partnership')" data-i18n="land_partnership">Əməkdaşlıq</a></li>
+                <li><a href="#" onclick="openMenuFromLanding('contact')" data-i18n="land_contact">Əlaqə</a></li>
+            </ul>
+        </div>
+
+        <div class="landing-content">
+            <h1 data-i18n="main_title">MEET BAKU</h1>
+            
+            <div class="meet-acrostic-box">
+                <div class="meet-item"><span>M</span> — Meals</div>
+                <div class="meet-item"><span>E</span> — Entertainment</div>
+                <div class="meet-item"><span>E</span> — Experience</div>
+                <div class="meet-item"><span>T</span> — Travel</div>
+            </div>
+
+            <p class="author-signature">By Mehdi</p>
+            
+            <button class="order-now-container" onclick="startApp()">
+                <span class="order-text" data-i18n="start_explore">Kəşfə Başla →</span>
+                <div class="order-line"></div>
+            </button>
+        </div>
+
+        <div class="landing-footer">
+            <div class="social-links">
+                <span>instagram</span>
+                <span>facebook</span>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse-icon">
+                    <div class="mouse-wheel"></div>
+                </div>
+                <span style="font-size: 11px; letter-spacing: 1px;">scroll to explore</span>
+            </div>
+            <div style="width: 80px;"></div>
+        </div>
+    </div>
+
+    <!-- ƏSAS SAYT PANELİ -->
+    <div id="appContainer" class="app-container" style="display: none;">
+        
+        <div class="top-right-menu-container">
+            <button class="lang-switch-btn" onclick="toggleCurrency()" id="currBtnApp">AZN ₼</button>
+            <button class="lang-switch-btn" onclick="toggleLanguage()" id="langBtnApp">AZ 🌐</button>
+            <button class="home-icon-btn" onclick="goToHome()" title="Ana səhifəyə qayıt">🏠</button>
+            <div class="menu-wrapper">
+                <button class="three-dots-btn" onclick="toggleDropdownMenu(event)">⋮</button>
+                <div id="dropdownMenu" class="dropdown-menu">
+                    <button onclick="switchMainTab('explore')" data-i18n="menu_explore">🌟 Məkan Kəşfi</button>
+                    <button onclick="switchMainTab('about')" data-i18n="menu_about">📖 Haqqımızda</button>
+                    <button onclick="switchMainTab('partnership')" data-i18n="menu_partnership">🤝 Əməkdaşlıq</button>
+                    <button onclick="switchMainTab('contact')" data-i18n="menu_contact">📞 Bizimlə Əlaqə</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="brand">
+                <h1>MEET</h1>
+                <span class="badge">BAKU</span>
+            </div>
+            <p class="subtitle" data-i18n="subtitle">By Mehdi — İstirahətini zövqlə planlaşdır</p>
+
+            <div id="exploreControls">
+                <div class="form-group" style="margin-top: 5px;">
+                    <label data-i18n="select_label">Kateqoriya və Büdcə Seçin</label>
+                    <select id="budgetPerPerson" onchange="generatePlan()">
+                        <option value="yemek_10" data-i18n="opt_1">🍔 Yemək: 10 AZN-ə qədər (Fast-food & Kafelər)</option>
+                        <option value="yemek_20_30" selected data-i18n="opt_2">🍲 Yemək: 10–30 AZN (Milli & Beynəlxalq)</option>
+                        <option value="yemek_50_plus" data-i18n="opt_3">🌟 Yemək: 50 AZN+ (Premium & Rooftop)</option>
+                        <option value="coffee_10" data-i18n="opt_4">☕ Coffee Shop: 10 AZN-ə qədər</option>
+                        <option value="coffee_plus" data-i18n="opt_5">☕ Coffee Shop: 10 AZN-dən yuxarı</option>
+                        <option value="eylence_15" data-i18n="opt_6">🎯 Əyləncə: 15 AZN-ə qədər</option>
+                        <option value="eylence_30" data-i18n="opt_7">🏎️ Əyləncə: 15–30 AZN</option>
+                        <option value="eylence_100" data-i18n="opt_8">🐎 Əyləncə: 30+ AZN</option>
+                        <option value="masterclass_35" data-i18n="opt_9">🎨 Masterklasslar: Keramika, Rəsm & Kulinariya</option>
+                    </select>
+                </div>
+
+                <button class="primary-btn" onclick="generatePlan()" data-i18n="btn_show">Məkanları Siyahıda Göstər</button>
+                <button class="sponsor-btn" onclick="toggleSponsoredMode()" data-i18n="btn_sponsor">💎 Premium Sponsorlar</button>
+                <button class="vip-sub-btn" onclick="openVipPage()" data-i18n="btn_vip">⭐ MeetBaku VIP Pass</button>
+                <button class="secondary-btn" onclick="pickRandomPlace()" data-i18n="btn_random">🎲 Bilmirəm hara gedim?</button>
+                <button class="insta-btn" onclick="toggleInstaSpotMode()" data-i18n="btn_insta">📸 Insta-Spot Rejimi</button>
+            </div>
+
+            <div class="favorites-filter-box">
+                <button class="fav-toggle-btn" onclick="toggleFavoritesView()">❤️ <span data-i18n="btn_fav">Sevimlilərim</span> (<span id="favCount">0</span>)</button>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="content-header">
+                <h2 id="sectionTitle" data-i18n="sec_title_places">Seçilmiş Məkanlar</h2>
+            </div>
+            
+            <div id="resultGrid" class="result-grid"></div>
+            <div id="pageContentArea" class="page-content-box" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
